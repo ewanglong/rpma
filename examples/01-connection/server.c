@@ -62,6 +62,10 @@ main(int argc, char *argv[])
 	if (ret)
 		goto err_ep_shutdown;
 
+	/* get private data */
+	struct rpma_conn_private_data prc_data;
+	ret = rpma_conn_req_get_private_data(req, &prc_data);
+
 	/*
 	 * connect / accept the connection request and obtain the connection
 	 * object

@@ -105,7 +105,13 @@ int
 rpma_conn_set_private_data(struct rpma_conn *conn,
 		struct rpma_conn_private_data *pdata)
 {
-	return rpma_private_data_copy(&conn->data, pdata);
+	if (pdata->ptr == NULL)
+		return 0;
+
+	conn->data.ptr = pdata->ptr;
+	conn->data.len = pdata->len;
+
+	return 0;
 }
 
 /* public librpma API */
